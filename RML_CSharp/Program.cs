@@ -6,14 +6,12 @@ namespace RML_CSharp
     class RaktariCikk { }
     class Szolgaltatas { }
 
-    //Irhatsz saját generic típust, de valószínűbb hogy a System.Collections.Generic névtér osztályait fogod használni: 
-    // https://docs.microsoft.com/en-gb/dotnet/api/system.collections.generic?view=netframework-4.7.2
     class SpeciLista<T> 
     {
         private T[] array = new T[10];
         private int count;
         
-        public void Add(T item)
+        public void Betesz(T item)
         {
             if (count<array.Length)
             {
@@ -22,7 +20,7 @@ namespace RML_CSharp
             }
         }
 
-        public double GetSquareOfCount()
+        public double TagokSzamanakNegyzete()
         {
             double c = count;
             return c * c;
@@ -33,6 +31,19 @@ namespace RML_CSharp
     {
         static void Main(string[] args)
         {
+            SpeciLista<RaktariCikk> speciCikkek = new SpeciLista<RaktariCikk>();
+            speciCikkek.Betesz(new RaktariCikk());
+            speciCikkek.Betesz(new RaktariCikk());
+            Console.WriteLine(speciCikkek.TagokSzamanakNegyzete());
+
+            SpeciLista<Szolgaltatas> speciSzolgaltatasok = new SpeciLista<Szolgaltatas>();
+            speciSzolgaltatasok.Betesz(new Szolgaltatas());
+            speciSzolgaltatasok.Betesz(new Szolgaltatas());
+            speciSzolgaltatasok.Betesz(new Szolgaltatas());
+            Console.WriteLine(speciSzolgaltatasok.TagokSzamanakNegyzete());
+
+            //Saját típusok helyett valószínűbb hogy a System.Collections.Generic névtér osztályait fogod használni: 
+            // https://docs.microsoft.com/en-gb/dotnet/api/system.collections.generic?view=netframework-4.7.2
             List<RaktariCikk> cikkek = new List<RaktariCikk>();
             List<Szolgaltatas> szolgaltatasok = new List<Szolgaltatas>();
             cikkek.Add(new RaktariCikk());
@@ -41,18 +52,6 @@ namespace RML_CSharp
             szolgaltatasok.Add(new Szolgaltatas());
             foreach (var cikk in cikkek) Console.WriteLine(cikk.ToString());
             foreach (var szolgaltatas in szolgaltatasok) Console.WriteLine(szolgaltatas.ToString());
-
-            SpeciLista<RaktariCikk> speciCikkek = new SpeciLista<RaktariCikk>();
-            speciCikkek.Add(new RaktariCikk());
-            speciCikkek.Add(new RaktariCikk());
-            Console.WriteLine(speciCikkek.GetSquareOfCount());
-
-            SpeciLista<Szolgaltatas> speciSzolgaltatasok = new SpeciLista<Szolgaltatas>();
-            speciSzolgaltatasok.Add(new Szolgaltatas());
-            speciSzolgaltatasok.Add(new Szolgaltatas());
-            speciSzolgaltatasok.Add(new Szolgaltatas());
-            Console.WriteLine(speciSzolgaltatasok.GetSquareOfCount());
-
         }
     }
 }
