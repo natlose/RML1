@@ -53,7 +53,7 @@ namespace RML_CSharp
                 new Dolgozo { Nev = "Elek", HaviAlapber = 650000M}
             };
             Console.WriteLine("\nLINQ extensions");
-            Console.WriteLine($"Átlag alapbér : {dolgozok.Average(d => d.HaviAlapber)}");
+            Console.WriteLine($"Átlag alapbér : {dolgozok.Average(d => d.HaviAlapber)}"); // Nyomj F12 gombot az Average metóduson és meglátod a System.Linq bővítéseit!
             Console.WriteLine($"Az első 300+  : {dolgozok.First(d => d.HaviAlapber > 300000M).Nev}");
             Console.WriteLine($"Max járulék   : {dolgozok.Max(d => d.HaviJarulek)}");
             Console.WriteLine($"SZJA átlag a legkisebb és a legnagyobb alapbér nélkül : {dolgozok.OrderBy(d => d.HaviAlapber).Skip(1).SkipLast(1).Average(d => d.HaviSZJA())}");
