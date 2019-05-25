@@ -75,6 +75,7 @@ namespace RML_CSharp
                 new VamRaktar.Kitarolas(),
                 new BelfoldiRaktar.Kitarolas()
             };
+            // ****** iktathatok[0] = new BelfoldiRaktar.Kitarolas();
             foreach (var iktathato in iktathatok) iktathato.Iktat();
             //Nem lehet hívni a Vamol() metódust, mert a deklarációban IIktathato van. 
             //Ez nem fordul le:
