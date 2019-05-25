@@ -16,9 +16,12 @@ namespace RML_CSharp
             LambdaExpression lambda = Expression.Lambda<Func<int, int>>(eMultiply, param1);
             int result1 = (int) lambda.Compile().DynamicInvoke(8);
             Console.WriteLine($"(66 - 53) * 8 = {result1}");
+            Expression<Func<int, int>> kompTree = num => (66-53) * num;
+            //Console.WriteLine($"(66 - 53) * 8 lambdával {kompTree(8)}");
+
 
             // Dekompozíció
-            Expression<Func<int, bool>> exprTree = num => num < 5;
+            Expression<Func<int, bool>> exprTree = num => num < 5; 
             ParameterExpression param = (ParameterExpression)exprTree.Parameters[0];
             BinaryExpression operation = (BinaryExpression)exprTree.Body;
             ParameterExpression left = (ParameterExpression)operation.Left;
