@@ -3,6 +3,10 @@ using System.Linq;
 
 namespace RML_CSharp
 {
+    //Probléma: a LINQ kifejezésekben gyakran fordul elő, hogy deklarált típusainkból tagokat összecsipegetve
+    //szeretnénk átmeneti adatszerkezetet létrehozni, van hogy csak a kifejezés következő szakaszáig.
+    //Ezek előzetes deklarálása fárasztó és gépies - végezze a fordító!
+
     class Szamla
     {
         public string Sorszam { get; set; }
