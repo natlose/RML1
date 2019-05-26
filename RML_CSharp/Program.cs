@@ -3,6 +3,16 @@ using System.Linq;
 
 namespace RML_CSharp
 {
+    //Probléma: esetenként szükség lenne olyan üzleti logika kialakítására, amely nem az öröklés vagy interfészek 
+    //alapján tesz különbséget az objektumok között.
+    //Kéne valami lehetőség, hogy meg lehessen 'pántlikázni' egy osztályt. A logikáknak legyen lehetőségük ezt 
+    //felismerni és ennek megfelelően eljárni.
+    //Megoldás: a fordító legyen képes meta-adatokat is elhelyeznia szerelvényben (assembly-ben: exe, dll)!
+    //Legyen olyan osztály a dotnetben, amelyik képes ezeket a meta-adatokat futási időben felolvasni a memóriába
+    //és átadni kiértékelésre a logikáknak!
+
+
+    //Példa: jelöletlen osztály
     class AkarmilyenOsztaly
     {
         int EgyIntMezo = 1;
@@ -14,13 +24,16 @@ namespace RML_CSharp
         }
     }
 
-    // Konvenció: az attribútum osztályok neve Attribute-ra végződik.
+    //Ez lesz a 'pántlika', kötelező a System.Attribute osztályból származtatni.
+    //Konvenció: az attribútum osztályok neve Attribute-ra végződik.
     class LenyegesAttribute : System.Attribute
     {
 
     }
 
-    // Itt a fordító támaszkodik a névkonvencióra
+    //Igy kell 'pántlikázni'. A deklaráció előtt [] jelek között kell szerepeltetni az attribútum nevét
+    //Minden pántlikázható: az osztály, a mezői, a tulajdonságai, a metódusai.
+    // Itt a fordító támaszkodik a névkonvencióra, mögé gondolja hogy 'Attribute'
     [Lenyeges]
     class MasmilyenOsztaly
     {
@@ -32,6 +45,7 @@ namespace RML_CSharp
         int UzletiLogika() { return valamiAprosag + NaEzAFontosAdat; }
     }
 
+    //Vannak előre definiált attribútunok, ilyen pl. az Obsolete
     [Obsolete("Használd helyette a VadiUjOsztaly-t!")]
     class ElavultOsztaly
     {
